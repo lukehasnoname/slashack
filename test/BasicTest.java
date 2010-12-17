@@ -6,6 +6,11 @@ import play.test.*;
 import models.*;
 
 public class BasicTest extends UnitTest {
+	
+	@Before
+    public void setup() {
+        Fixtures.deleteAll();
+    }
 
     @Test
     public void createUserTest() {
@@ -16,13 +21,13 @@ public class BasicTest extends UnitTest {
     	
     	Post frist = new Post(newBob, "Google!","http://google.com", null, null);
     	frist.save();
-    	Post alone = Post.find("byAuthor", bob).first();
-    	System.out.println(alone.title);
-    	List<Post> bobposts = newBob.posts;
+    	newBob.posts.add(frist);
+    	assertEquals(1, Post.count()); //The post does exist.
     	
-    	for(Post p : bobposts){
-    		System.out.println(p.url);
-    	}
+    	//Post checkit = newBob.posts.get(0);
+    	
+    	
+    	
     	
     	//assertEquals(workDamnit.title, "Google!");
     	
