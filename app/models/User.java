@@ -17,10 +17,11 @@ public class User extends Model {
 	public String email;
 	public Date joindate;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="author", cascade=CascadeType.ALL)
 	public List<Post> posts;
 	
 	public User(String username, String password, String email){
+		this.posts = new ArrayList<Post>();
 		this.username = username;
 		this.password = password;
 		this.email = email;

@@ -18,6 +18,7 @@ public class Post extends Model{
 	public String url;
 	@Lob
 	@MaxSize(100000)
+	public String content;
 	public Date postdate;
 	@ManyToOne
 	public Post parent;
@@ -31,5 +32,6 @@ public class Post extends Model{
 		this.postdate = new Date();
 		this.parent = parent;
 		this.root = root;
+		//author.posts.add(this);
 	}
 }
